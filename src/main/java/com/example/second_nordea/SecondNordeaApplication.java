@@ -11,7 +11,7 @@ import java.util.Scanner;
 @SpringBootApplication
 public class SecondNordeaApplication {
     private static Scanner input = new Scanner(System.in);
-
+    private static double deposit_amount_John;
     public static void main(String[] args) {
         SpringApplication.run(SecondNordeaApplication.class, args);
 
@@ -22,7 +22,7 @@ public class SecondNordeaApplication {
             Account account_1 = new Account(John_characteristics.getInitial_balance_John());
 
             System.out.println("Enter deposit amount for John: ");
-            double deposit_amount_John = input.nextDouble();
+            deposit_amount_John = input.nextDouble();
             input.nextLine();
 
             account_1.credit(deposit_amount_John);

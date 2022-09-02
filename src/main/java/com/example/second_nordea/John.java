@@ -15,6 +15,13 @@ public class John {
 
     private String [] languages;
 
+    public John(String firstName, String lastName, double initial_balance_John, boolean account_status) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.initial_balance_John = initial_balance_John;
+        this.account_status = account_status;
+    }
+
     public String[] getLanguages() {
         return languages;
     }
