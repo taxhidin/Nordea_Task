@@ -2,7 +2,7 @@
   "id": 7890,
   "firstName": "Bob",
   "lastName": "oppenheimer",
-  "initial_balance_Bob": "1000",
+  "initial_balance": "1000",
   "account_status": "true",
   "address": {
     "street": "24 Snyder Avenue",

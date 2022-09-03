@@ -2,7 +2,7 @@
   "id": 1234,
   "firstName": "John",
   "lastName": "Rossi",
-  "initial_balance_John": "50",
+  "initial_balance": "50",
   "account_status": "true",
   "address": {
     "street": "100 Main St",
