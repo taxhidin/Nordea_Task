@@ -6,19 +6,26 @@ import org.junit.jupiter.api.Test;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.Scanner;
 
 import static junit.framework.TestCase.assertEquals;
 
 class AccountTest {
     private ObjectMapper mapper = new ObjectMapper();
-    private final John John_characteristics = mapper.readValue(new File("data/John_Detail.json"), John.class);
+    private final Person john = mapper.readValue(new File("data/John_Detail.json"), Person.class);
 
-    private Account account_2 = new Account(John_characteristics.getInitial_balance_John());
-    private Account account;
+    private Account account_John = new Account(john.getInitial_balance());
+
+
+
+
+    private final Person bob = mapper.readValue(new File("data/Bob_Detail.json"), Person.class);
+
+    private Account account_bob = new Account(bob.getInitial_balance());
+
+
+
     private static int count;
 
-    private static Scanner input = new Scanner(System.in);
 
     AccountTest() throws IOException {
     }
@@ -30,15 +37,24 @@ class AccountTest {
 
     @org.junit.Before
     public void setup() {
-        account.testing_method("Alan", "Openheimer", 600, false);
+        account_John.getBalance();
+        account_bob.getBalance();
         System.out.println("Running a test .....");
     }
 
     @Test
-    void getBalance() throws Exception {
+    void getBalance_John() throws Exception {
 
         double balance_test = 50.0;
-        assertEquals("John  initial balance for testing valuie is correct", John_characteristics.getInitial_balance_John(), balance_test);
+        assertEquals("John  initial balance for testing valuie is correct", john.getInitial_balance(), balance_test);
+
+    }
+
+    @Test
+    void getBalance_Bob() throws Exception {
+
+        double balance_test = 1000.0;
+        assertEquals("Bob  initial balance for testing valuie is correct", bob.getInitial_balance(), balance_test);
 
     }
 
@@ -47,21 +63,37 @@ class AccountTest {
     }
 
     @Test
-    void credit() {
+    void credit_John() {
         System.out.println("If John  enter $60 deposit amount");
-        double credit_calculated = account_2.getBalance() + 60;
-        assertEquals("Final value after added deposit: ", 110, credit_calculated, 0);
+        double credit_calculated = account_John.getBalance() + 60;
+        assertEquals("John's Final value after added deposit: ", 110, credit_calculated, 0);
 
     }
-    //We are going to test the John information stored in our Json file
+
+    @Test
+    void credit_Bob() {
+        System.out.println("If Bob  enter $60 deposit amount");
+        double credit_calculated = account_bob.getBalance() + 60;
+        assertEquals("Bob's Final value after added deposit: ", 1060, credit_calculated, 0);
+
+    }
 
 
     @Test
-    void testing_value_stored_json() {
+    void testing_value_stored_json_John() {
         System.out.println("Expected last name: Rossi");
         String  expected_last_name = "Rossi";
-        String actual_last_name = John_characteristics.getLastName();
+        String actual_last_name = john.getLastName();
         assertEquals("Testing John information stored in Json file ",expected_last_name,actual_last_name);
+
+    }
+
+    @Test
+    void testing_value_stored_json_Bob() {
+        System.out.println("Expected last name: Oppenheimer");
+        String  expected_last_name = "Oppenheimer";
+        String actual_last_name = bob.getLastName();
+        assertEquals("Testing Bob information stored in Json file ",expected_last_name,actual_last_name);
 
     }
 }
